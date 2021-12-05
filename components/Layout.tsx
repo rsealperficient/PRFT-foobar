@@ -22,7 +22,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
                 <meta name="description" content={props.metaDescription} />
                 <Meta />
             </Head>  
-            <Navigation title={props.title} />
+            <Navigation title={props.title}></Navigation>
             <div className={props.className} role="main">
                 {props.children}        
             </div>

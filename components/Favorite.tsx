@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '@/lib/InitSupabase';
-import { Auth } from '@supabase/ui';
 import Card from '@/components/Card';
 
 type FavoriteItem = {
@@ -13,11 +12,12 @@ export default function Favorite() {
 
     const router = useRouter();
     const {cur} = router.query;
-    const { user } = Auth.useUser()
+    const user = supabase.auth.user();
     const [favorites, setFavorites] = useState<FavoriteItem[]>([])
     const [errorText, setError] = useState('');
 
     useEffect(() => {
+        if (!user) return;
         fetchFavorites();
       },[]);
 

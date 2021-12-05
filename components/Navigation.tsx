@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { supabase } from '../lib/InitSupabase';
-import { Auth } from '@supabase/ui';
 import { LogoutIcon, UserIcon } from '@heroicons/react/solid';
 
 interface INavigationProps {
@@ -10,7 +9,7 @@ interface INavigationProps {
 
 const Navigation: React.FC<INavigationProps> = (props) => {
 
-    const { user } = Auth.useUser();
+    const user = supabase.auth.user();
     const router = useRouter();
     
     return (
@@ -22,6 +21,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
                         <img src={user?.user_metadata.avatar_url} 
                             title={user?.user_metadata.full_name} 
                             className="drop-shadow-sm" 
+                            alt="github avatar"
                             width={40} 
                             height={40} 
                         />
@@ -47,7 +47,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
             onClick={ async () => {
                 const { error } = await supabase.auth.signOut();
                 if (error) return;
-                router.push("/");
+                router.push("/auth");
             }}
             >
             Logout <LogoutIcon className="inline h-5 w-5 text-white" />

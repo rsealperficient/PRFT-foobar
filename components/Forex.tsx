@@ -1,8 +1,8 @@
 import { useState, useEffect, SetStateAction } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { supabase } from '@/lib/InitSupabase';
-import { Auth } from '@supabase/ui';
 import CurrencySelector from '@/components/CurrencySelector';
 import { HeartIcon } from '@heroicons/react/solid';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
@@ -15,7 +15,7 @@ export default function Forex() {
   const router = useRouter();
   const {cur} = router.query;
   const [currency, setCurrency] = useState('');
-  const { user } = Auth.useUser()
+  const user = supabase.auth.user();
   const [isFavorite, setFavorite] = useState(false);
   const [id, setId] = useState('');
   const [errorText, setError] = useState('');
@@ -26,11 +26,13 @@ export default function Forex() {
   const currencyName = cur && currencies.data.filter((c: { id: string | string[]; }) => c.id === cur)[0]?.name;
 
   useEffect(() => {
+    if (!user) return;
     fetchPrefs();
   },[cur, currency]);
 
   const fetchPrefs = async () => {
 
+    if (!user) return;
     if (!cur && !currency) return;
 
     let { data: prefs, error } = await supabase
@@ -102,6 +104,10 @@ export default function Forex() {
       <button 
         className="flex justify-center font-bold text-gray-800 dark:text-white text-xl bg-gradient-to-tr from-white to-gray-300 dark:from-blue-600 dark:to-purple-900 px-4 py-4 rounded"
         onClick={async () => { 
+          if (!user) {
+            router.push('/auth');
+            return;
+          }
           await updatePrefs(); 
         }}
       >
@@ -116,6 +122,7 @@ export default function Forex() {
             : <span>Add to Favorites</span>
         }       
       </button>
+
     </>
   )
 }
