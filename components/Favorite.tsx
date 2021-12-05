@@ -16,11 +16,6 @@ export default function Favorite() {
     const [favorites, setFavorites] = useState<FavoriteItem[]>([])
     const [errorText, setError] = useState('');
 
-    useEffect(() => {
-        if (!user) return;
-        fetchFavorites();
-      },[]);
-
     const fetchFavorites = async () => {
 
     let { data: faves, error } = await supabase
@@ -38,6 +33,11 @@ export default function Favorite() {
         }
     }
     } 
+
+    useEffect(() => {
+        if (!user) return;
+        fetchFavorites();
+    },[user]);
 
     return (
         <>

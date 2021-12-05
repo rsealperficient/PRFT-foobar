@@ -2,7 +2,6 @@ import { supabase } from '@/lib/InitSupabase'
 import { Auth } from '@supabase/ui'
 
 export default function AuthComponent() {
-    const { user } = Auth.useUser();
 
     return(
         <Auth

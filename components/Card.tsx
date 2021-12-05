@@ -17,7 +17,7 @@ const Card: React.FC<ICardProps> = (props) => {
 
     return (
     <div className="bg-gradient-to-tr from-blue-600 via-purple-800 to-purple-900 rounded-lg text-white overflow-hidden flex shadow-lg text-left transform transition-all duration-500 ease-in-out hover:bg-gray-50 hover:scale-105 hover:shadow-none">
-        <Image src="/images/diag.svg" width="100" height="100" className="transform rotate-180" />
+        <Image src="/images/diag.svg" width="100" height="100" className="transform rotate-180" alt="decoration element" />
         <div className="w-full flex md:flex-col">
             <div className="sm:max-w-sm sm:flex-none md:w-auto md:flex-auto flex flex-col items-start relative z-10 p-6 xl:p-8">
                 <h3 className="text-xl font-semibold text-shadow">
@@ -25,7 +25,7 @@ const Card: React.FC<ICardProps> = (props) => {
                 </h3>               
             </div>
         </div>
-        <Image src="/images/diag.svg" width="100" height="100" />
+        <Image src="/images/diag.svg" width="100" height="100" alt="decoration element" />
     </div>
     )
 }

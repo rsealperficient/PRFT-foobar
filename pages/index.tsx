@@ -12,8 +12,10 @@ export default function IndexPage() {
 
   useEffect(() => {
     const currentPath = localStorage.getItem("prft-foobar.current-url");
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('go'); 
 
-    if (user) {
+    if (query && query === "home") {
       localStorage.setItem("prft-foobar.current-url", location.pathname);
       return;
     }
@@ -21,7 +23,7 @@ export default function IndexPage() {
     if (currentPath && location.pathname !== currentPath) {
       router.push(currentPath);
     }
-  },[]);
+  },[router, user]);
 
   return (
     <Layout
@@ -31,7 +33,7 @@ export default function IndexPage() {
       <div className="flex h-screen justify-center bg-gradient-to-tr from-yellow-400 via-red-500 to-pink-500 dark:from-gray-700 dark:via-black dark:to-gray-900">
         <div className="px-8 py-8 h-full">
           <div className="flex flex-col justify-center items-center">
-            <Image src="/images/btc.png" width={400} height={348} />
+            <Image src="/images/btc.png" width={400} height={348} alt="Graphical depiction of Bitcoin" />
             <h1 className="font-extrabold text-6xl text-white px-8">
               Get
               <span className="animate-pulse"> Bitcoin </span>

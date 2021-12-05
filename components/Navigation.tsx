@@ -17,7 +17,7 @@ const Navigation: React.FC<INavigationProps> = (props) => {
 
         {
             user?.app_metadata.provider === "github" 
-                && <a href="/">
+                && <Link href="/?go=home">
                         <img src={user?.user_metadata.avatar_url} 
                             title={user?.user_metadata.full_name} 
                             className="drop-shadow-sm" 
@@ -25,22 +25,24 @@ const Navigation: React.FC<INavigationProps> = (props) => {
                             width={40} 
                             height={40} 
                         />
-                    </a>
+                    </Link>
         }
 
         {
             user?.app_metadata.provider === "email" 
-                && <a href="/">
+                &&  <Link href="/?go=home">
                         <UserIcon className="text-white h-8 w-8" />
-                    </a>
+                    </Link>
         }
 
-        <a href="/" title="home" className="px-2 py-1 text-lg">
-            { !user 
-                ? props.title 
-                : user?.user_metadata.user_name || user?.email
-            }
-        </a>            
+        <div className="px-2 py-1 text-lg">
+            <Link href="/?go=home">
+                { !user 
+                    ? props.title 
+                    : user?.user_metadata.user_name || user?.email
+                }
+            </Link>    
+        </div>        
 
         { user && (<button
             className="ml-auto"

@@ -28,7 +28,7 @@ export default function Forex() {
   useEffect(() => {
     if (!user) return;
     fetchPrefs();
-  },[cur, currency]);
+  },[cur, currency, user]);
 
   const fetchPrefs = async () => {
 

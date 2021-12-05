@@ -25,7 +25,7 @@ export default function IndexPage() {
     >
       <div className="px-8 py-8 h-full">
         <div className="flex flex-col justify-center items-center p-4">
-          <Image src="/images/btc.png" width={400} height={348} />
+          <Image src="/images/btc.png" width={400} height={348} alt="Graphical depiction of Bitcoin" />
           <Forex  />  
           <Favorite />
         </div>
