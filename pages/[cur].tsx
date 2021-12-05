@@ -1,16 +1,20 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { supabase } from '@/lib/InitSupabase';
 import { Auth } from '@supabase/ui';
 import Layout from '@/components/Layout';
 import AuthComponent from '@/components/Auth';
-import CurrencySelector from '@/components/CurrencySelector';
+import Forex from '@/components/Forex';
 import Favorite from '@/components/Favorite';
 
 export default function IndexPage() {
   const { user } = Auth.useUser()
+  const router = useRouter()
+  const {cur} = router.query;
 
   return (
     <Layout
-      title="PRFT-Foobar Next.js Hackathon - BTC Exchange Rates"
+      title={`PRFT-Foobar Next.js Hackathon - BTC-${cur?.toUpperCase()} Exchange`}
       className="flex h-screen justify-center bg-gradient-to-tr from-yellow-400 via-red-500 to-pink-500 dark:from-gray-700 dark:via-black dark:to-gray-900"
       metaDescription="by Andy Merhaut"
       user={user}
@@ -19,17 +23,11 @@ export default function IndexPage() {
         {!user ? (
           <AuthComponent />
         ) : (
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center p-4">
             <Image src="/images/btc.png" width={400} height={348} />
-            <h1 className="font-extrabold text-6xl text-white px-8">
-              Get
-              <span className="animate-pulse"> Bitcoin </span>
-              exchange price
-            </h1>
-            <CurrencySelector />  
-            <Favorite /> 
+            <Forex  />  
+            <Favorite />
           </div>
-          
         )}
       </div>
     </Layout>
