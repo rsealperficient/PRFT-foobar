@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation';
 import Meta from '@/components/Meta';
 
 type LayoutProps = {
-    title?: string, 
+    title: string, 
     className?: string, 
     metaDescription?: string,
     children?: ReactNode,
