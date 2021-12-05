@@ -5,22 +5,17 @@ import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
 import Meta from '@/components/Meta';
 
-type LayoutProps = {
+interface ILayoutProps {
     title: string, 
-    className?: string, 
+    className?: string,
     metaDescription?: string,
     children?: ReactNode,
     user?: User | any
 };
 
-const Layout = (props: LayoutProps) => {
+const Layout: React.FC<ILayoutProps> = (props) => {
 
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-
-    return mounted && (
+    return (
         <>
             <Head>
                 <title>{props.title}</title>

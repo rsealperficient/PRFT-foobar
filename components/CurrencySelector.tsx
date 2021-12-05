@@ -8,7 +8,7 @@ type CurrencyData = {
 
 interface ICurrencySelectorProps {
   selected: string | string[] | undefined,
-  onChange: any
+  onChange?: any
 }
 
 const CurrencySelector: React.FC<ICurrencySelectorProps> = (props) => {

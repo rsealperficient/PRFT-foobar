@@ -26,7 +26,7 @@ export default function IndexPage() {
               <span className="animate-pulse"> Bitcoin </span>
               exchange price
             </h1>
-            <CurrencySelector />  
+            <CurrencySelector selected="" />  
             <Favorite /> 
           </div>
           

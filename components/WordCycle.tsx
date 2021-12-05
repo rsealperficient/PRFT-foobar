@@ -1,7 +1,11 @@
 import { useState } from "react";
 import useInterval from "@/lib/useInterval";
 
-export default function WordCycle(props) {
+interface IWordCycleProps {
+  words: string[]
+}
+
+const WordCycle: React.FC<IWordCycleProps> = (props) => {
   let [index, setIndex] = useState(0);
 
   useInterval(() => {
@@ -14,3 +18,5 @@ export default function WordCycle(props) {
     </span>
   );
 }
+
+export default WordCycle;
