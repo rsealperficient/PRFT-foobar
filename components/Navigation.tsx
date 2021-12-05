@@ -4,7 +4,11 @@ import { supabase } from '../lib/InitSupabase';
 import { Auth } from '@supabase/ui';
 import { LogoutIcon, UserIcon } from '@heroicons/react/solid';
 
-export default function Navigation(props) {
+interface INavigationProps {
+    title: string
+  }
+
+const Navigation: React.FC<INavigationProps> = (props) => {
 
     const { user } = Auth.useUser();
     const router = useRouter();
@@ -52,3 +56,5 @@ export default function Navigation(props) {
     </nav>
     )
 }
+
+export default Navigation;
