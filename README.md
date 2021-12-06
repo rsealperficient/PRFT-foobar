@@ -2,6 +2,8 @@
 
 [Demo Site](https://prft-foobar.vercel.app/)
 
+[Video Walkthrough](https://www.youtube.com/watch?v=esrvRihhswc)
+
 This project looks up the current buy prices for Bitcoin (BTC) in various currencies, using the publicly-available [Coinbase API](https://api.coinbase.com/v2/prices/BTC-USD/buy).
 
 ## Getting Started
